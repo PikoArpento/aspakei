@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>statistiche demografiche</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            align-content:center;
+            position:absolute;
+            top: 700px;
+            left: 800px;
+        }
+        .containerWords {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            align-content: center;
+            position: absolute;
+            top: 700px;
+            right: 900px;
+        }
+        .containerLow {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            align-content: center;
+            position: absolute;
+            top: 1100px;
+            left: 800px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            top: 0;
+            width: 96%;
+            z-index: 1000;
+        }
+
+            header .logo {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #0055a5;
+            }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+            nav ul li {
+                margin-left: 1.5rem;
+            }
+
+                nav ul li a {
+                    text-decoration: none;
+                    color: #333;
+                    transition: color 0.3s ease;
+                }
+
+                    nav ul li a:hover {
+                        color: #0055a5;
+                    }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+            .logo img.flag {
+                width: 40px;
+                height: auto;
+                margin-right: 10px;
+            }
+
+        .hero {
+            position: relative;
+            background: url(../../background_main.jpg) center/cover no-repeat;
+            height: 100vh;
+            width: 1000vh;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+            .hero::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1;
+            }
+
+            .hero h1 {
+                font-family: "Merriweather", serif;
+                position: relative;
+                z-index: 2;
+                font-size: 3rem;
+                color: #fff;
+                text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+                animation: fadeInDown 1s ease-out;
+                margin: 0 1rem;
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: #f0e3d5;
+            }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #0055a5;
+            border-bottom: 2px solid #0055a5;
+            padding-bottom: 5px;
+        }
+        canvas {
+            display: block;
+            box-sizing: border-box;
+            height: 150px;
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="../../flag.png" alt="Bandiera di Aspakei" class="flag">
+            Aspakei
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Statistiche mediche</h1>
+    </section>
+
+    <main class="containerWords">
+        <section id="popolazione" class="section">
+            <div>
+                <h2>L'infarto acuto del miocardio</h2>
+                <p>
+                    L'infarto miocardico acuto (IMA) è una necrosi dei miociti provocata da ischemia prolungata, susseguente a inadeguata perfusione del miocardio per squilibrio fra richiesta e offerta di ossigeno, spesso secondaria all'occlusione di una coronaria causata da un trombo.
+                </p>
+            </div>
+        </section>
+    </main>
+    <main class="container">
+        <section id="popolazione" class="section">
+            <div>
+                <h2>Statistiche sull'infarto</h2>
+                <canvas id="ChartMed"></canvas>
+            </div>
+        </section>
+    </main>
+    <main class="containerLow">
+        <section id="popolazione" class="section">
+            <div>
+                <h2>Statistiche sull'età</h2>
+                <canvas id="ChartAge"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <script src="statistiche.js"></script>
+    <script>
+        const ctxMed = document.getElementById('ChartMed');
+        new Chart(ctxMed, {
+            type: 'line',
+            data: {
+                labels: ['70', '75', '80', '85', '90'],
+                datasets: [{
+                    label: '# Infarti (per 100.000 ab.)',
+                    data: [300, 320, 360, 300, 290],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+
+        const ctxAge = document.getElementById('ChartAge');
+        new Chart(ctxAge, {
+            type: 'pie',
+            data: {
+                labels: ['<20', '20-30', '30-40', '40-50', '50-60', '60-70', '70-80', '80-90', '90+'],
+                datasets: [{
+                    label: '# Distribuzione per età (%)',
+                    data: [3, 5, 7, 9, 11, 14, 16, 18, 17],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>

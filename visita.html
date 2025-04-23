@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impero del Popolo e del Senato di Aspakei</title>
+    <link rel="icon" href="flag.png">
+    <link href="style_intro.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="flag.png" alt="Bandiera di Aspakei" class="flag">
+            Aspakei
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Impero Democratico del Popolo e del Senato di Aspakei</h1>
+    </section>
+
+    <main>
+        <h1>Indice</h1>
+        <div class="content">
+            <div class="category" onclick="toggleSubcategories('visit')">Visita i Domini Imperiali</div>
+            <div class="subcategory-container" id="visit">
+                <a href="mappa/mappa.html" class="subcategory">Mappa Interattiva</a>
+                <a href="Turismo/regolamento.html" class="subcategory">Regolamento per i turisti</a>
+                <a href="città/citta.html" class="subcategory">Scopri le città principali</a>
+            </div>
+
+            <div class="category" onclick="toggleSubcategories('nature')">Esplora la natura</div>
+            <div class="subcategory-container" id="nature">
+                <a href="Turismo/rosParco.html" class="subcategory">Parco Nazionale di Rosozhkei</a>
+                <a href="Turismo/sanParco.html" class="subcategory">Parco Nazionale di Sandozhkei</a>
+                <a href="Turismo/gabParco.html" class="subcategory">Parco Nazionale di Gabozhkei</a>
+            </div>
+
+            <div class="category" onclick="toggleSubcategories('emergency')">Salute e sicurezza</div>
+            <div class="subcategory-container" id="emergency">
+                <a href="sanita/SEUN.html" class="subcategory">Sistema di Emergenza</a>
+                <a href="sanita/vaccinazioni.html" class="subcategory">Lista delle vaccinazioni obbligatorie e consigliate</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Impero del Popolo e del Senato di Aspakei. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        function toggleSubcategories(categoryId) {
+            let category = document.getElementById(categoryId);
+            let allCategories = document.querySelectorAll('.subcategory-container');
+            allCategories.forEach(cat => {
+                if (cat !== category) {
+                    cat.style.display = 'none';
+                }
+            });
+            category.style.display = category.style.display === 'block' ? 'none' : 'block';
+        }
+    // Al caricamento del DOM, imposta l'observer per far apparire gli elementi in scroll
+    document.addEventListener("DOMContentLoaded", function() {
+      const observerOptions = {
+        root: null,           // usa il viewport
+        threshold: 0.1        // attiva l'animazione quando il 10% dell'elemento è visibile
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.category, .subcategory').forEach(element => {
+        observer.observe(element);
+      });
+    });
+    </script>
+</body>
+</html>

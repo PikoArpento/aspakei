@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impero del Popolo e del Senato di Aspakei</title>
+    <link rel="icon" href="flag.png">
+    <link href="style_intro.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="flag.png" alt="Bandiera di Aspakei" class="flag">
+            Aspakei
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Impero Democratico del Popolo e del Senato di Aspakei</h1>
+    </section>
+
+    <main>
+        <h1>Indice</h1>
+        <div class="content">
+            <div class="category" onclick="toggleSubcategories('imperial-history')">Storia dell'Impero</div>
+            <div class="subcategory-container" id="imperial-history">
+                <a href="File/history_chapter1.html" class="subcategory">Capitolo 1</a>
+                <a href="File/history_chapter2.html" class="subcategory">Capitolo 2</a>
+                <a href="File/history_chapter3.html" class="subcategory">Capitolo 3</a>
+                <a href="File/history_chapter4.html" class="subcategory">Capitolo 4</a>
+                <a href="File/history_chapter5.html" class="subcategory">Capitolo 5</a>
+                <a href="File/history_chapter6.html" class="subcategory">Capitolo 6</a>
+                <a href="File/history_chapter7.html" class="subcategory">Capitolo 7</a>
+                <a href="File/history_chapter8.html" class="subcategory">Capitolo 8</a>
+                <a href="File/history_chapter9.html" class="subcategory">Capitolo 9</a>
+                <a href="File/history_chapter10.html" class="subcategory">Capitolo 10</a>
+                <a href="File/history_chapter11.html" class="subcategory">Capitolo 11</a>
+            </div>
+
+            <div class="category" onclick="toggleSubcategories('culture')">Cultura e tradizioni</div>
+            <div class="subcategory-container" id="culture">
+                <a href="cultura/arte.html" class="subcategory">Arte</a>
+                <a href="cultura/cucina.html" class="subcategory">Cucina</a>
+                <a href="cultura/famiglia.html" class="subcategory">Famiglia</a>
+                <a href="cultura/feste.html" class="subcategory">Feste</a>
+                <a href="cultura/letteratura.html" class="subcategory">Letteratura</a>
+                <a href="cultura/musica.html" class="subcategory">Musica</a>
+                <a href="cultura/scultura.html" class="subcategory">Scultura</a>
+                <a href="cultura/vestiti.html" class="subcategory">Vestiti</a>
+            </div>
+
+            <div class="category" onclick="toggleSubcategories('religion')">Il Fayankesimo</div>
+            <div class="subcategory-container" id="religion">
+                <a href="Fayankesimo/religionBook.html" class="subcategory">Testi Sacri</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Impero del Popolo e del Senato di Aspakei. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        function toggleSubcategories(categoryId) {
+            let category = document.getElementById(categoryId);
+            let allCategories = document.querySelectorAll('.subcategory-container');
+            allCategories.forEach(cat => {
+                if (cat !== category) {
+                    cat.style.display = 'none';
+                }
+            });
+            category.style.display = category.style.display === 'block' ? 'none' : 'block';
+        }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const observerOptions = {
+        root: null,
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.category, .subcategory').forEach(element => {
+        observer.observe(element);
+      });
+    });
+    </script>
+</body>
+</html>

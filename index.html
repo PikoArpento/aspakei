@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impero del Popolo e del Senato di Aspakei</title>
+    <link rel="icon" href="flag.png">
+    <link href="style_index.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="flag.png" alt="Bandiera di Aspakei" class="flag">
+            Aspakei
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Impero Democratico del Popolo e del Senato di Aspakei</h1>
+    </section>
+
+    <main>
+        <h1>Indice</h1>
+        <div class="content">
+            <div class="category" onclick="toggleSubcategories('imperial-history')">Scopri</div>
+            <div class="subcategory-container" id="imperial-history">
+                <a href="esplora.html" class="subcategory">Approfondisci la storia del nostro Impero, la nostra cultura, e il Fayankesimo</a>
+            </div>
+
+            <div class="category" onclick="toggleSubcategories('culture')">Esplora</div>
+            <div class="subcategory-container" id="culture">
+                <a href="visita.html" class="subcategory">Esplora paesaggi mozzafiato, città storiche e le ricchezze naturali di Aspakei.</a>
+            </div>
+
+            <div class="category" onclick="toggleSubcategories('religion')">Amministrazione</div>
+            <div class="subcategory-container" id="religion">
+                <a href="amministrazione.html" class="subcategory">Servizi per i cittadini, documenti pubblici e informazioni governative.</a>
+            </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Impero del Popolo e del Senato di Aspakei. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        function toggleSubcategories(categoryId) {
+            let category = document.getElementById(categoryId);
+            let allCategories = document.querySelectorAll('.subcategory-container');
+            allCategories.forEach(cat => {
+                if (cat !== category) {
+                    cat.style.display = 'none';
+                }
+            });
+            category.style.display = category.style.display === 'block' ? 'none' : 'block';
+        }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const observerOptions = {
+        root: null,
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.category, .subcategory').forEach(element => {
+        observer.observe(element);
+      });
+    });
+    </script>
+</body>
+</html>

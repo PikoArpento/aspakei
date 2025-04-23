@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regolamento turisti</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="../flag.png">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            top: 0;
+            width: 96%;
+            z-index: 1000;
+        }
+
+            header .logo {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #0055a5;
+            }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+            nav ul li {
+                margin-left: 1.5rem;
+            }
+
+                nav ul li a {
+                    text-decoration: none;
+                    color: #333;
+                    transition: color 0.3s ease;
+                }
+
+                    nav ul li a:hover {
+                        color: #0055a5;
+                    }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img.flag {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+        }
+    
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            background: url(../background_main.jpg) center/cover no-repeat;
+            background-size: cover;
+            background-position: center;
+            transition: background 1s ease-in-out;
+        }
+
+            .hero::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1;
+            }
+
+            .hero h1 {
+                font-family: "Merriweather", serif;
+                position: relative;
+                z-index: 2;
+                font-size: 3rem;
+                color: #fff;
+                text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+                animation: fadeInDown 1s ease-out;
+                margin: 0 1rem;
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: #f0e3d5;
+            }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        h2 {
+            color: #0055a5;
+            border-bottom: 2px solid #0055a5;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../flag.png" alt="Bandiera di Aspakei" class="flag">
+            Aspakei
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero" id="hero">
+        <h1>Regolamento per i turisti in visita all'Impero</h1>
+    </section>
+
+    <main class="container">
+        <section class="section">
+            <h2>Disposizioni Generali</h2>
+            <p>
+                <div>
+                    1. Questo regolamento stabilisce le norme che i turisti devono rispettare durante il loro soggiorno nell'Impero di Aspakei.
+                </div>
+                <div>
+                    2. L'ingresso e la permanenza nel territorio nazionale implicano l'accettazione di tutte le disposizioni contenute nel presente regolamento.
+                </div>
+                <div>
+                    3. L'Impero di Aspakei si impegna a garantire un'esperienza turistica sicura e piacevole, fornendo informazioni aggiornate sui regolamenti e le attrazioni disponibili.
+                </div>
+                <div>
+                    4. Il turismo è una risorsa importante per la nazione, pertanto si chiede ai visitatori di comportarsi con responsabilità e rispetto nei confronti dell’ambiente, della cultura e della popolazione locale.
+                </div>
+                <div>
+                    5. Le autorità locali hanno il diritto di applicare sanzioni a coloro che non rispettano le norme stabilite nel presente regolamento.
+                </div>
+            </p>
+        </section>
+        <section class="section">
+            <h2>
+                Ingresso e Documentazione
+            </h2>
+                <p>
+                    <div>
+                        1. Per l'ingresso nel paese, i turisti devono presentare un documento d'identità valido e, se richiesto, un visto turistico.
+                    </div>
+                    <div>
+                        2. È consigliato stipulare un’assicurazione sanitaria per coprire eventuali emergenze mediche durante la permanenza nel paese.
+                    </div>
+                    <div>
+                        3. I turisti devono informarsi in anticipo sui requisiti di ingresso e sulle eventuali restrizioni vigenti.
+                    </div>
+                    <div>
+                        4. I minori di età inferiore ai 18 anni devono essere accompagnati da un tutore legale o possedere un'autorizzazione ufficiale per viaggiare da soli.
+                    </div>
+                </p>
+            </h2>
+        </section>
+        <section class="section">
+            <h2>
+                Norme di comportamento
+            </h2>
+            <p>
+                <div>
+                    1. I turisti devono rispettare le leggi locali e le tradizioni culturali della nazione.
+                </div>
+                <div>
+                    2. Sono vietati atti di vandalismo, schiamazzi e comportamenti che possano disturbare la quiete pubblica.
+                </div>
+                <div>
+                    3. È obbligatorio mantenere il decoro nei luoghi pubblici e rispettare il codice di abbigliamento laddove previsto.
+                </div>
+                <div>
+                    4. Il mancato rispetto delle norme sociali e culturali può comportare sanzioni pecuniarie o, in casi gravi, l'espulsione dal paese.
+                </div>
+                <div>
+                    5. I turisti devono rispettare la segnaletica e le regole di comportamento specifiche di luoghi sacri e siti storici.
+                </div>
+            </p>
+        </section>
+        <section class="section">
+            <h2>
+                Sicurezza
+            </h2>
+            <p>
+                <div>
+                    1. I turisti devono attenersi alle norme sanitarie vigenti, incluse eventuali vaccinazioni obbligatorie.
+                </div>
+                <div>
+                    2. È vietato portare sostanze illecite o pericolose nel territorio nazionale.
+                </div>
+                <div>
+                    3. In caso di emergenza sanitaria, i turisti devono seguire le indicazioni delle autorità locali.
+                </div>
+                <div>
+                    4. È consigliato avere con sé una copia dei propri documenti di identificazione in caso di controlli di sicurezza.
+                </div>
+                <div>
+                    5. In caso di calamità naturali o situazioni di emergenza, i turisti devono attenersi alle istruzioni fornite dalle autorità locali.
+                </div>
+                <div>
+                    6. Alcune aree potrebbero essere soggette a restrizioni per motivi di sicurezza nazionale, ed è proibito l’accesso senza autorizzazione.                    
+                </div>
+            </p>
+        </section>
+        <section class="section">
+            <h2>
+                Ambiente
+            </h2>
+            <p>
+                <div>
+                    1. È severamente vietato danneggiare o asportare beni appartenenti al patrimonio storico e naturale.
+                </div>
+                <div>
+                    2. I turisti devono rispettare le norme di raccolta rifiuti.
+                </div>
+                <div>
+                    3. L’accensione di fuochi in aree naturali è vietata, salvo diversa autorizzazione.
+                </div>
+                <div>
+                    4. È vietato il prelievo di piante, rocce o altri elementi naturali dai parchi nazionali e dalle riserve protette.
+                </div>
+                <div>
+                    5. I turisti sono incoraggiati a scegliere opzioni di trasporto eco-sostenibili per ridurre l’impatto ambientale.
+                </div>
+            </p>
+        </section>
+        <section class="section">
+            <h2>
+                Valuta
+            </h2>
+            <p>
+                <div>
+                    1. Il taro deve essere utilizzato per tutte le transazioni all'interno del paese, salvo diversa indicazione.
+                </div>
+                <div>
+                    2. È obbligatorio dichiarare somme di denaro superiori a 3.200 taro come stabilito dalla legge all’ingresso nel paese.
+                </div>
+            </p>
+        </section>
+        <section class="section">
+            <h2>
+                Sanzioni
+            </h2>
+            <p>
+                <div>
+                    1. La violazione delle norme sopra elencate può comportare sanzioni amministrative, l'espulsione dal paese, o il carcere se previsto dalla legge.
+                </div>
+                <div>
+                    2. Le autorità locali si riservano il diritto di negare l’ingresso o revocare il permesso di soggiorno ai trasgressori abituali.
+                </div>
+            </p>
+        </section>
+        <section class="section">
+            <h2>
+                Disposizioni finali
+            </h2>
+            <p>
+                <div>
+                    1. Il presente regolamento è soggetto a modifiche e aggiornamenti da parte delle autorità competenti.
+                </div>
+                <div>
+                    2. I turisti sono invitati a informarsi sulle normative vigenti prima e durante il loro soggiorno.
+                </div>
+                <div>
+                    3. Per qualsiasi chiarimento o necessità, è possibile rivolgersi agli uffici turistici ufficiali della nazione.
+                </div>
+            </p>
+        </section>
+    </main>
+</body>
+</html>

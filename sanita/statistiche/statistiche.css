@@ -1,0 +1,18 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#line-example-3 {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+    #line-example-3 .line {
+        --aspect-ratio: 21 / 9;
+        background-color: #f6f6f6;
+    }

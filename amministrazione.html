@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impero del Popolo e del Senato di Aspakei</title>
+    <link rel="icon" href="flag.png">
+    <link href="style_intro.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="flag.png" alt="Bandiera di Aspakei" class="flag">
+            Aspakei
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Impero Democratico del Popolo e del Senato di Aspakei</h1>
+    </section>
+
+    <main>
+        <h1>Indice</h1>
+        <div class="content">
+            <div class="category" onclick="toggleSubcategories('senate')">Senato e Leggi</div>
+            <div class="subcategory-container" id="senate">
+                <a href="politica/costituzione.html" class="subcategory">Costituzione</a>
+                <a href="politica/codice penale.html" class="subcategory">Codice Penale</a>
+                <a href="simboli/bandiera.html" class="subcategory">La bandiera</a>
+                <a href="simboli/fiore.html" class="subcategory">Il fiore del senato</a>
+                <a href="simboli/inno.html" class="subcategory">I'Inno dell'Impero</a>
+            </div>
+
+            <div class="category" onclick="toggleSubcategories('military')">Difesa e Onore</div>
+            <div class="subcategory-container" id="military">
+                <a href="esercito/arruolamento.html" class="subcategory">Arruolamento</a>
+            </div>
+
+            <div class="category" onclick="toggleSubcategories('school')">Studia ad Aspakei</div>
+            <div class="subcategory-container" id="school">
+                <a href="studio/borse di studio.html" class="subcategory">Borse di studio nazionali e all'estero</a>
+            </div>
+          <div class="category" onclick="toggleSubcategories('citizenship')">Cittadinanza</div>
+            <div class="subcategory-container" id="citizenship">
+                <a href="cittadinanza/cittadinanza.html" class="subcategory">Guida alla cittadinanza e ai visti</a>
+                <a href="sanita/statistiche/popolazione.html" class="subcategory">Statistiche</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Impero del Popolo e del Senato di Aspakei. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        function toggleSubcategories(categoryId) {
+            let category = document.getElementById(categoryId);
+            let allCategories = document.querySelectorAll('.subcategory-container');
+            allCategories.forEach(cat => {
+                if (cat !== category) {
+                    cat.style.display = 'none';
+                }
+            });
+            category.style.display = category.style.display === 'block' ? 'none' : 'block';
+        }
+    // Al caricamento del DOM, imposta l'observer per far apparire gli elementi in scroll
+    document.addEventListener("DOMContentLoaded", function() {
+      const observerOptions = {
+        root: null,           // usa il viewport
+        threshold: 0.1        // attiva l'animazione quando il 10% dell'elemento è visibile
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.category, .subcategory').forEach(element => {
+        observer.observe(element);
+      });
+    });
+    </script>
+</body>
+</html>

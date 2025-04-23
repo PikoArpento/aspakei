@@ -1,0 +1,567 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mappa di Aspakei</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="../flag.png">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            width: 96%;
+            z-index: 1000;
+        }
+
+            header .logo {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #0055a5;
+            }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+            nav ul li {
+                margin-left: 1.5rem;
+            }
+
+                nav ul li a {
+                    text-decoration: none;
+                    color: #333;
+                    transition: color 0.3s ease;
+                }
+
+                    nav ul li a:hover {
+                        color: #0055a5;
+                    }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img.flag {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+
+        .map-container {
+            position:relative;
+            top: 150px;
+            left: 100px;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        .map {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+        }
+        .map-icon {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+        .tooltip {
+            visibility: hidden;
+            width: 180px;
+            background-color: darkgray;
+            color: #432818;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            position: absolute;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .map-icon:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        .transport-container {
+            position: relative;
+            top: -320px;
+            left: 450px;
+            background:darkgray;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.9);
+        }
+        .transport-form label, .transport-form select, .transport-form input, .transport-form button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+        }
+        .transport-form button {
+            background: #0055a5;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .transport-form button:hover {
+            background: red;
+            color: #432818;
+        }
+        .highlight {
+            background-color: #e6f7ff;
+            font-weight: bold;
+        }
+        .route-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .route-table th, .route-table td {
+                border: 1px solid #ddd;
+                padding: 12px;
+                text-align: center;
+            }
+
+            .route-table th {
+                background: #0055a5;
+                color: white;
+                font-size: 16px;
+            }
+
+            .route-table tr:nth-child(even) {
+                background: #f9f9f9;
+            }
+
+            .route-table tr:hover {
+                background: #f1f1f1;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../flag.png" alt="Bandiera di Aspakei" class="flag">
+            Aspakei
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="map-container">
+        <img src="map.png" alt="Map of the Empire" class="map">
+        <div class="map-icon" style="top: 25%; left: 25%;">
+            <img src="icon.png" alt="Kadekei">
+            <div class="tooltip">
+                <strong>Kadekei</strong><br>
+            </div>
+        </div>
+
+        <div class="map-icon" style="top: 35%; left: 30%;">
+            <img src="icon.png" alt="Lucozhkei">
+            <div class="tooltip">
+                <strong>Lucozhkei</strong><br>
+            </div>
+        </div>
+
+        <div class="map-icon" style="top: 34%; left: 29%;">
+            <img src="icon.png" alt="Isozhkei">
+            <div class="tooltip">
+                <strong>Isozhkei</strong><br>
+            </div>
+        </div>
+
+        <div class="map-icon" style="top: 38%; left: 32%;">
+            <img src="icon.png" alt="Barbarbozhkei">
+            <div class="tooltip">
+                <strong>Barbarbozhkei</strong><br>
+            </div>
+        </div>
+
+        <div class="map-icon" style="top: 8%; left: 36%;">
+            <img src="icon.png" alt="Borvozhkei">
+            <div class="tooltip">
+                <strong>Borvozhkei</strong><br>
+            </div>
+        </div>
+
+        <div class="map-icon" style="top: 23%; left: 63%;">
+            <img src="icon.png" alt="Spursozhkei">
+            <div class="tooltip">
+                <strong>Spurozhkei</strong><br>
+            </div>
+        </div>
+
+        <div class="map-icon" style="top: 58%; left: 75%;">
+            <img src="icon.png" alt="Sandozhkei">
+            <div class="tooltip">
+                <strong>Sandozhkei</strong><br>
+            </div>
+        </div>
+
+        <div class="map-icon" style="top: 28%; left: 32%;">
+            <img src="icon.png" alt="Dostozhkei">
+            <div class="tooltip">
+                <strong>Dostozhkei</strong><br>
+            </div>
+        </div>
+
+        <div class="map-icon" style="top: 30%; left: 25%;">
+            <img src="icon.png" alt="Olgayozhkei">
+            <div class="tooltip">
+                <strong>Olgayozhkei</strong><br>
+            </div>
+        </div>
+
+        <div class="map-icon" style="top: 28%; left: 24%;">
+            <img src="icon_NRPL.png" alt="Hyperbase">
+            <div class="tooltip">
+                <strong>NRPL of the Hyperbase</strong><br>
+            </div>
+        </div>
+
+        <div class="map-icon" style="top: 28%; left: 28%;">
+            <img src="icon_NRPL.png" alt="Afterbridge">
+            <div class="tooltip">
+                <strong>NRPL of the Afterbridge</strong><br>
+            </div>
+        </div>
+
+        <div class="map-icon" style="top: 54%; left: 60%;">
+            <img src="icon_NRPL.png" alt="Xayofkei">
+            <div class="tooltip">
+                <strong>NRPL of Xayofkei</strong><br>
+            </div>
+        </div>
+
+        <div class="map-icon" style="top: 56%; left: 38%;">
+            <img src="icon.png" alt="Rosozhkei">
+            <div class="tooltip">
+                <strong>Rosozhkei</strong><br>
+            </div>
+        </div>
+
+        <div class="map-icon" style="top: 17%; left: 83%;">
+            <img src="icon.png" alt="Fluvyozhkei">
+            <div class="tooltip">
+                <strong>Fluvyozhkei</strong><br>
+            </div>
+        </div>
+
+        <div class="map-icon" style="top: 17%; left: 83%;">
+            <img src="icon.png" alt="Mountain Village">
+            <div class="tooltip">
+                <strong>Fluvyozhkei</strong><br>
+            </div>
+        </div>
+    </div>
+
+    <div id="station-info" class="station-info-box" style="display: none;"></div>
+
+    <div class="transport-container">
+        <h2>Trova la strada migliore</h2>
+        <form class="transport-form">
+            <label for="from">Da:</label>
+            <select id="from">
+            </select>
+
+            <label for="to">A:</label>
+            <select id="to">
+            </select>
+
+            <label for="transportType">Tipo di trasporto:</label>
+            <select id="transportType">
+                <option value="">Tutti</option>
+                <option value="train">Treno</option>
+                <option value="bus">Autobus</option>
+                <option value="ferry">Traghetto</option>
+            </select>
+
+            <button type="button" onclick="findBestRoute()">Trova tratta</button>
+        </form>
+        <p id="route-info"></p>
+        <table class="route-table" id="route-table" style="display: none;">
+
+            <tbody id="route-results"></tbody>
+        </table>
+    </div>
+
+    <script>
+        const transportLines = [
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "08:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "08:40" },
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "09:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "09:40" },
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "10:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "10:40" },
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "11:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "11:40" },
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "12:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "12:40" },
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "13:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "13:40" },
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "14:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "14:40" },
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "15:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "15:40" },
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "16:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "16:40" },
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "17:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "17:40" },
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "18:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "18:40" },
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "19:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "19:40" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "20:40" },
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "20:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "21:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "21:40" },
+            { line: "Bus Rosso", type: "bus", stops: ["Kadekei", "Olgayozhkei", "Lucozhkei", "Isozhkei", "Barbarbozhkei"], startTime: "22:00" },
+            { line: "Bus Rosso", type: "bus", stops: ["Barbarbozhkei", "Isozhkei", "Lucozhkei", "Olgayozhkei", "Kadekei"], startTime: "22:40" },
+
+            { line: "Treno Rosso", type: "train", stops: ["Kadekei", "Lucozhkei", "Isozhkei", "Dostozhkei", "Borvozhkei"], startTime: "08:30" },
+            { line: "Treno Rosso", type: "train", stops: ["Borvozhkei", "Dostozhkei", "Isozhkei", "Lucozhkei", "Kadekei"], startTime: "09:35" },
+            { line: "Treno Rosso", type: "train", stops: ["Kadekei", "Lucozhkei", "Isozhkei", "Dostozhkei", "Borvozhkei"], startTime: "10:40" },
+            { line: "Treno Rosso", type: "train", stops: ["Borvozhkei", "Dostozhkei", "Isozhkei", "Lucozhkei", "Kadekei"], startTime: "11:45" },
+            { line: "Treno Rosso", type: "train", stops: ["Kadekei", "Lucozhkei", "Isozhkei", "Dostozhkei", "Borvozhkei"], startTime: "12:50" },
+            { line: "Treno Rosso", type: "train", stops: ["Borvozhkei", "Dostozhkei", "Isozhkei", "Lucozhkei", "Kadekei"], startTime: "13:55" },
+            { line: "Treno Rosso", type: "train", stops: ["Kadekei", "Lucozhkei", "Isozhkei", "Dostozhkei", "Borvozhkei"], startTime: "15:00" },
+            { line: "Treno Rosso", type: "train", stops: ["Borvozhkei", "Dostozhkei", "Isozhkei", "Lucozhkei", "Kadekei"], startTime: "16:05" },
+            { line: "Treno Rosso", type: "train", stops: ["Kadekei", "Lucozhkei", "Isozhkei", "Dostozhkei", "Borvozhkei"], startTime: "17:10" },
+            { line: "Treno Rosso", type: "train", stops: ["Borvozhkei", "Dostozhkei", "Isozhkei", "Lucozhkei", "Kadekei"], startTime: "18:15" },
+            { line: "Treno Rosso", type: "train", stops: ["Kadekei", "Lucozhkei", "Isozhkei", "Dostozhkei", "Borvozhkei"], startTime: "19:20" },
+            { line: "Treno Rosso", type: "train", stops: ["Borvozhkei", "Dostozhkei", "Isozhkei", "Lucozhkei", "Kadekei"], startTime: "20:25" },
+            { line: "Treno Rosso", type: "train", stops: ["Kadekei", "Lucozhkei", "Isozhkei", "Dostozhkei", "Borvozhkei"], startTime: "21:30" },
+            { line: "Treno Rosso", type: "train", stops: ["Borvozhkei", "Dostozhkei", "Isozhkei", "Lucozhkei", "Kadekei"], startTime: "22:35" },
+
+            { line: "Treno Verde", type: "train", stops: ["Kadekei", "Borvozhkei", "Spursozhkei", "Fluvyozhkei", "Sandozhkei"], startTime: "08:00" },
+            { line: "Treno Verde", type: "train", stops: ["Sandozhkei", "Fluvyozhkei", "Spursozhkei", "Borvozhkei", "Kadekei"], startTime: "10:25" },
+            { line: "Treno Verde", type: "train", stops: ["Kadekei", "Borvozhkei", "Spursozhkei", "Fluvyozhkei", "Sandozhkei"], startTime: "11:45" },
+            { line: "Treno Verde", type: "train", stops: ["Sandozhkei", "Fluvyozhkei", "Spursozhkei", "Borvozhkei", "Kadekei"], startTime: "12:50" },
+            { line: "Treno Verde", type: "train", stops: ["Kadekei", "Borvozhkei", "Spursozhkei", "Fluvyozhkei", "Sandozhkei"], startTime: "13:55" },
+            { line: "Treno Verde", type: "train", stops: ["Sandozhkei", "Fluvyozhkei", "Spursozhkei", "Borvozhkei", "Kadekei"], startTime: "15:00" },
+            { line: "Treno Verde", type: "train", stops: ["Kadekei", "Borvozhkei", "Spursozhkei", "Fluvyozhkei", "Sandozhkei"], startTime: "16:05" },
+            { line: "Treno Verde", type: "train", stops: ["Sandozhkei", "Fluvyozhkei", "Spursozhkei", "Borvozhkei", "Kadekei"], startTime: "17:10" },
+            { line: "Treno Verde", type: "train", stops: ["Kadekei", "Borvozhkei", "Spursozhkei", "Fluvyozhkei", "Sandozhkei"], startTime: "18:15" },
+            { line: "Treno Verde", type: "train", stops: ["Sandozhkei", "Fluvyozhkei", "Spursozhkei", "Borvozhkei", "Kadekei"], startTime: "19:20" },
+            { line: "Treno Verde", type: "train", stops: ["Kadekei", "Borvozhkei", "Spursozhkei", "Fluvyozhkei", "Sandozhkei"], startTime: "20:25" },
+            { line: "Treno Verde", type: "train", stops: ["Sandozhkei", "Fluvyozhkei", "Spursozhkei", "Borvozhkei", "Kadekei"], startTime: "21:30" },
+            { line: "Treno Verde", type: "train", stops: ["Kadekei", "Borvozhkei", "Spursozhkei", "Fluvyozhkei", "Sandozhkei"], startTime: "22:35" },
+
+            { line: "Treno Blu", type: "train", stops: ["Spursozhkei", "Fluvyozhkei", "Sandozhkei", "Xayofkei"], startTime: "08:15" },
+            { line: "Treno Blu", type: "train", stops: ["Xayofkei", "Sandozhkei", "Fluvyozhkei", "Spursozhkei"], startTime: "09:40" },
+            { line: "Treno Blu", type: "train", stops: ["Spursozhkei", "Fluvyozhkei", "Sandozhkei", "Xayofkei"], startTime: "10:45" },
+            { line: "Treno Blu", type: "train", stops: ["Xayofkei", "Sandozhkei", "Fluvyozhkei", "Spursozhkei"], startTime: "11:50" },
+            { line: "Treno Blu", type: "train", stops: ["Spursozhkei", "Fluvyozhkei", "Sandozhkei", "Xayofkei"], startTime: "12:55" },
+            { line: "Treno Blu", type: "train", stops: ["Xayofkei", "Sandozhkei", "Fluvyozhkei", "Spursozhkei"], startTime: "14:00" },
+            { line: "Treno Blu", type: "train", stops: ["Spursozhkei", "Fluvyozhkei", "Sandozhkei", "Xayofkei"], startTime: "15:05" },
+            { line: "Treno Blu", type: "train", stops: ["Xayofkei", "Sandozhkei", "Fluvyozhkei", "Spursozhkei"], startTime: "16:10" },
+            { line: "Treno Blu", type: "train", stops: ["Spursozhkei", "Fluvyozhkei", "Sandozhkei", "Xayofkei"], startTime: "17:15" },
+            { line: "Treno Blu", type: "train", stops: ["Xayofkei", "Sandozhkei", "Fluvyozhkei", "Spursozhkei"], startTime: "18:20" },
+            { line: "Treno Blu", type: "train", stops: ["Spursozhkei", "Fluvyozhkei", "Sandozhkei", "Xayofkei"], startTime: "19:25" },
+            { line: "Treno Blu", type: "train", stops: ["Xayofkei", "Sandozhkei", "Fluvyozhkei", "Spursozhkei"], startTime: "20:30" },
+            { line: "Treno Blu", type: "train", stops: ["Spursozhkei", "Fluvyozhkei", "Sandozhkei", "Xayofkei"], startTime: "21:35" },
+            { line: "Treno Blu", type: "train", stops: ["Xayofkei", "Sandozhkei", "Fluvyozhkei", "Spursozhkei"], startTime: "22:40" },
+
+            { line: "Treno Arancio", type: "train", stops: ["Hyperbase", "Afterbridge", "Xayofkei"], startTime: "08:00" },
+            { line: "Treno Arancio", type: "train", stops: ["Xayofkei", "Afterbridge", "Hyperbase"], startTime: "09:15" },
+            { line: "Treno Arancio", type: "train", stops: ["Hyperbase", "Afterbridge", "Xayofkei"], startTime: "10:20" },
+            { line: "Treno Arancio", type: "train", stops: ["Xayofkei", "Afterbridge", "Hyperbase"], startTime: "11:25" },
+            { line: "Treno Arancio", type: "train", stops: ["Hyperbase", "Afterbridge", "Xayofkei"], startTime: "12:30" },
+            { line: "Treno Arancio", type: "train", stops: ["Xayofkei", "Afterbridge", "Hyperbase"], startTime: "13:35" },
+            { line: "Treno Arancio", type: "train", stops: ["Hyperbase", "Afterbridge", "Xayofkei"], startTime: "14:40" },
+            { line: "Treno Arancio", type: "train", stops: ["Xayofkei", "Afterbridge", "Hyperbase"], startTime: "15:45" },
+            { line: "Treno Arancio", type: "train", stops: ["Hyperbase", "Afterbridge", "Xayofkei"], startTime: "16:50" },
+            { line: "Treno Arancio", type: "train", stops: ["Xayofkei", "Afterbridge", "Hyperbase"], startTime: "17:55" },
+            { line: "Treno Arancio", type: "train", stops: ["Hyperbase", "Afterbridge", "Xayofkei"], startTime: "19:00" },
+            { line: "Treno Arancio", type: "train", stops: ["Xayofkei", "Afterbridge", "Hyperbase"], startTime: "20:05" },
+            { line: "Treno Arancio", type: "train", stops: ["Hyperbase", "Afterbridge", "Xayofkei"], startTime: "21:10" },
+            { line: "Treno Arancio", type: "train", stops: ["Xayofkei", "Afterbridge", "Hyperbase"], startTime: "22:15" },
+
+
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Barbarbozhkei", "Rosozhkei"], startTime: "08:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Rosozhkei", "Barbarbozhkei"], startTime: "09:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Barbarbozhkei", "Rosozhkei"], startTime: "10:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Rosozhkei", "Barbarbozhkei"], startTime: "11:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Barbarbozhkei", "Rosozhkei"], startTime: "12:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Rosozhkei", "Barbarbozhkei"], startTime: "13:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Barbarbozhkei", "Rosozhkei"], startTime: "14:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Rosozhkei", "Barbarbozhkei"], startTime: "15:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Barbarbozhkei", "Rosozhkei"], startTime: "16:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Rosozhkei", "Barbarbozhkei"], startTime: "17:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Barbarbozhkei", "Rosozhkei"], startTime: "18:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Rosozhkei", "Barbarbozhkei"], startTime: "19:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Barbarbozhkei", "Rosozhkei"], startTime: "20:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Rosozhkei", "Barbarbozhkei"], startTime: "21:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Barbarbozhkei", "Rosozhkei"], startTime: "22:00" },
+            { line: "Traghetto Rosa", type: "ferry", stops: ["Rosozhkei", "Barbarbozhkei"], startTime: "23:00" },
+
+            { line: "Aereo Rosso", type: "plane", stops: ["Kadekei", "Sandozhkei"], startTime: "08:10" },
+            { line: "Aereo Rosso", type: "plane", stops: ["Sandozhkei", "Kadekei"], startTime: "10:30" },
+            { line: "Aereo Rosso", type: "plane", stops: ["Kadekei", "Sandozhkei"], startTime: "16:10" },
+            { line: "Aereo Rosso", type: "plane", stops: ["Sandozhkei", "Kadekei"], startTime: "18:30" },
+
+            { line: "Aereo Verde", type: "plane", stops: ["Kadekei", "Fluvyozhkei"], startTime: "08:20" },
+            { line: "Aereo Verde", type: "plane", stops: ["Fluvyozhkei", "Kadekei"], startTime: "10:40" },
+            { line: "Aereo Verde", type: "plane", stops: ["Kadekei", "Fluvyozhkei"], startTime: "16:20" },
+            { line: "Aereo Verde", type: "plane", stops: ["Fluvyozhkei", "Kadekei"], startTime: "18:40" },
+
+            { line: "Aereo Rosa", type: "plane", stops: ["Kadekei", "Rosozhkei"], startTime: "08:40" },
+            { line: "Aereo Rosa", type: "plane", stops: ["Rosozhkei", "Kadekei"], startTime: "10:30" },
+            { line: "Aereo Rosa", type: "plane", stops: ["Kadekei", "Rosozhkei"], startTime: "17:40" },
+            { line: "Aereo Rosa", type: "plane", stops: ["Rosozhkei", "Kadekei"], startTime: "19:30" },
+
+            { line: "Aereo Blu", type: "plane", stops: ["Kadekei", "Xayofkei"], startTime: "09:00" },
+            { line: "Aereo Blu", type: "plane", stops: ["Xayofkei", "Kadekei"], startTime: "11:20" },
+            { line: "Aereo Blu", type: "plane", stops: ["Kadekei", "Xayofkei"], startTime: "18:00" },
+            { line: "Aereo Blu", type: "plane", stops: ["Xayofkei", "Kadekei"], startTime: "19:20" }
+        ];
+
+
+        function populateCityOptions() {
+            const fromSelect = document.getElementById("from");
+            const toSelect = document.getElementById("to");
+            const cities = new Set();
+            transportLines.forEach(line => line.stops.forEach(stop => cities.add(stop)));
+            cities.forEach(city => {
+                let option1 = document.createElement("option");
+                let option2 = document.createElement("option");
+                option1.value = option2.value = city;
+                option1.innerText = option2.innerText = city;
+                fromSelect.appendChild(option1);
+                toSelect.appendChild(option2);
+            });
+        }
+
+        const cities = {
+            "Kadekei": { x: 25, y: 25 },
+            "Lucozhkei": { x: 35, y: 30 },
+            "Isozhkei": { x: 34, y: 29 },
+            "Barbarbozhkei": { x: 38, y: 32 },
+            "Borvozhkei": { x: 8, y: 36 },
+            "Spurozhkei": { x: 23, y: 63 },
+            "Sandozhkei": { x: 58, y: 65 },
+            "Dostozhkei": { x: 28, y: 32 },
+            "Olgayozhkei": { x: 30, y: 25 },
+            "Hyperbase": { x: 28, y: 24 },
+            "Afterbridge": { x: 28, y: 28 },
+            "Xayofkei": { x: 54, y: 60 },
+            "Rosozhkei": { x: 56, y: 38 },
+            "Fluvyozhkei": { x: 17, y: 83 }
+        };
+
+        document.addEventListener("DOMContentLoaded", populateCityOptions);
+        function calculateTotalTravelTime(stops, type) {
+            let totalDistance = 0;
+
+            for (let i = 0; i < stops.length - 1; i++) {
+                if (cities[stops[i]] && cities[stops[i + 1]]) {
+                    const dx = cities[stops[i + 1]].x - cities[stops[i]].x;
+                    const dy = cities[stops[i + 1]].y - cities[stops[i]].y;
+                    totalDistance += Math.sqrt(dx * dx + dy * dy);
+                }
+            }
+
+            const speed = {
+                "train": 2,
+                "bus": 2.3,
+                "ferry": 2.5,
+                "plane": 1.2
+            };
+
+            return Math.round(totalDistance * (speed[type] || 5));
+        }
+
+
+        function findBestRoute() {
+            const from = document.getElementById("from").value;
+            const to = document.getElementById("to").value;
+            const tableBody = document.getElementById("route-results");
+            tableBody.innerHTML = "";
+
+            let found = false;
+            let possibleRoutes = [];
+
+            transportLines.forEach(line => {
+                if (line.stops.includes(from) && line.stops.includes(to)) {
+                    const startIndex = line.stops.indexOf(from);
+                    const endIndex = line.stops.indexOf(to);
+                    if (startIndex < endIndex) {
+                        let travelTime = calculateTotalTravelTime(line.stops.slice(startIndex, endIndex + 1), line.type);
+                        let departureTime = line.startTime.split(":");
+                        let arrivalHour = parseInt(departureTime[0]);
+                        let arrivalMinute = parseInt(departureTime[1]) + travelTime;
+                        arrivalHour += Math.floor(arrivalMinute / 60);
+                        arrivalMinute %= 60;
+                        let arrivalTime = `${arrivalHour.toString().padStart(2, '0')}:${arrivalMinute.toString().padStart(2, '0')}`;
+
+                        possibleRoutes.push({
+                            line: line.line,
+                            type: line.type,
+                            stops: line.stops.slice(startIndex, endIndex + 1).join(" → "),
+                            departure: line.startTime,
+                            arrival: arrivalTime,
+                            duration: `${travelTime} min`
+                        });
+
+                        found = true;
+                    }
+                }
+            });
+
+            if (found) {
+                tableBody.innerHTML = possibleRoutes.map(route => `
+            <tr>
+                <td>${route.line} (${route.type})</td>
+                <td>${route.stops}</td>
+                <td>${route.departure}</td>
+                <td>${route.arrival}</td>
+                <td>${route.duration}</td>
+            </tr>
+        `).join("");
+
+                document.getElementById("route-table").style.display = "table";
+                document.getElementById("route-info").innerText = "Percorso trovato:";
+            } else {
+                document.getElementById("route-info").innerText = "Nessun percorso disponibile.";
+                document.getElementById("route-table").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
