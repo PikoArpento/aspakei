@@ -1,0 +1,139 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    position: fixed;
+    top: 0;
+    width: 96%;
+    z-index: 1000;
+}
+
+    header .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #0055a5;
+    }
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+    nav ul li {
+        margin-left: 1.5rem;
+    }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+            nav ul li a:hover {
+                color: #0055a5;
+            }
+.logo {
+    display: flex;
+    align-items: center;
+}
+.logo img.flag {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    background: url(../background_main.jpg) center/cover no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: background 1s ease-in-out;
+}
+
+    .hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+
+    .hero h1 {
+        font-family: "Merriweather", serif;
+        position: relative;
+        z-index: 2;
+        font-size: 3rem;
+        color: #fff;
+        text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+        animation: fadeInDown 1s ease-out;
+        margin: 0 1rem;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: #f0e3d5;
+    }
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.section {
+    margin-bottom: 40px;
+}
+h2 {
+    color: #0055a5;
+    border-bottom: 2px solid #0055a5;
+    padding-bottom: 5px;
+}
+
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+.image-container {
+    text-align: center;
+    flex: 1 1 200px;
+    max-width: 200px;
+}
+.image-container img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    display: block;
+}
+.image-container img:hover {
+    transform: scale(1.1);
+}
