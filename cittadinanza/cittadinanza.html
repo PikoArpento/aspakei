@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richiesta di Cittadinanza</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="../flag.png">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 80px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    position: fixed;
+    top: 0;
+    width: 96%;
+    z-index: 1000;
+}
+
+    header .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #0055a5;
+    }
+        nav ul {
+    list-style: none;
+    display: flex;
+}
+
+    nav ul li {
+        margin-left: 1.5rem;
+    }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+            nav ul li a:hover {
+                color: #0055a5;
+            }
+.logo {
+    display: flex;
+    align-items: center;
+}
+.logo img.flag {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+}
+
+        h1, h2 {
+            text-align: center;
+            color: #0055a5;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #0055a5;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+            button:hover {
+                background: red;
+            }
+
+        .info {
+            background: #e0e0e0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .small-text {
+            font-size: 0.8em;
+            color: #555;
+        }
+
+        .faq-container {
+            margin-top: 20px;
+        }
+
+        .faq-header {
+            background: #0055a5;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .faq-content {
+            display: none;
+            padding: 15px;
+            background: #e0e0e0;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function toggleFAQ() {
+            var content = document.getElementById("faq-content");
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../flag.png" alt="Bandiera di Aspakei" class="flag">
+            Aspakei
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Diventa Cittadino di Aspakei</h1>
+        <h1>Richiedi la Cittadinanza</h1>
+        <form>
+            <label for="name">Nome e Cognome:</label>
+            <input type="text" id="name" required>
+
+            <label for="birthdate">Data di nascita:</label>
+            <input type="date" id="birthdate" required>
+
+            <label for="nationality">Nazionalità attuale:</label>
+            <input type="text" id="nationality" required>
+
+            <label for="address">Indirizzo di residenza:</label>
+            <input type="text" id="address" required>
+
+            <label for="passport">Numero di passaporto:</label>
+            <input type="text" id="passport" required>
+
+            <label for="marital-status">Stato civile:</label>
+            <select id="marital-status" required>
+                <option value="single">Celibe/Nubile</option>
+                <option value="married">Sposato/a</option>
+                <option value="divorced">Divorziato/a</option>
+                <option value="widowed">Vedovo/a</option>
+            </select>
+
+            <label for="languages">Lingue parlate:</label>
+            <input type="text" id="languages" required>
+
+            <label for="reason">Motivazione della richiesta:</label>
+            <textarea id="reason" rows="4" required></textarea>
+
+            <label for="documents">Carica documenti richiesti:</label>
+            <input type="file" id="documents">
+
+            <input type="checkbox" id="terms" required>
+            <label for="terms" class="small-text">Dichiaro di aver letto e accettato le condizioni legali</label>
+
+            <button type="submit">Invia Richiesta</button>
+        </form>
+
+        <h3 class="faq-header" onclick="toggleFAQ()">Domande Frequenti ⬇</h3>
+        <div class="faq-content" id="faq-content">
+            <h3>Quali documenti sono richiesti?</h3>
+            <p>È necessario presentare un documento di identità valido ed un certificato di residenza</p>
+            <h3>Posso ottenere la cittadinanza se sono sposato fuori da Aspakei con un cittadino di Aspakei?</h3>
+            <p>Sì, ma è richiesto un minimo di 3 anni di matrimonio e residenza nel paese.</p>
+            <h3>La cittadinanza è revocabile?</h3>
+            <p>Sì, solo in caso sia il cittadino stesso a richiederlo.</p>
+            <h3>Ci sono programmi di integrazione per i nuovi cittadini?</h3>
+            <p>Sì, offriamo corsi di lingua, cultura e supporto all’occupazione.</p>
+            <h3>Posso mantenere la mia cittadinanza originale?</h3>
+            <p>Sì, Aspakei permette di mantenere più di una cittadinanza.</p>
+            <h3>Qual è il costo della richiesta?</h3>
+            <p>La richiesta costa 50 em., non rimborsabili.</p>
+            <h3>Devo dimostrare mezzi di sostentamento?</h3>
+            <p>Non è necessario, tuttavia, in caso ne venga dimostrata la mancanza, Aspakei si impegnerà ad offrirlo al richiedente.</p>
+            <h3>Quanto tempo richiede l'elaborazione della richiesta?</h3>
+            <p>Il tempo medio è di 2-3 mesi, ma può variare.</p>
+            <h3>Che succede se la mia richiesta viene respinta?</h3>
+            <p>Puoi presentare ricorso entro 60 giorni dalla notifica.</p>
+            <h3>Posso lavorare mentre la mia richiesta è in elaborazione?</h3>
+            <p>Sì, puoi richiedere un permesso di lavoro temporaneo.</p>
+            <h3>Posso includere i miei genitori nella richiesta?</h3>
+            <p>Sì, se sono a tuo carico e soddisfano i criteri di residenza.</p>
+            <h3>Posso includere i miei figli nella richiesta?</h3>
+            <p>Sì, se minori di 18 anni e soddisfano i criteri di residenza.</p>
+            <h3>Esiste un limite al numero di cittadinanze concesse ogni anno?</h3>
+            <p>No, ma il Senato ha la discrezione di sospendere le domande in casi eccezionali.</p>
+        </div>
+    </div>
+</body>
+</html>
