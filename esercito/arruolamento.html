@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../flag.png">
+    <title>Arruolati nell'Esercito di Aspakei</title>
+    <style>
+        /* Reset base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        body h1 {
+            position: relative;
+            top: -130px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 
+            1000;
+        }
+        header:hover {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+            header .logo {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #0055a5;
+            }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img.flag {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+
+        /* Nav */
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+            nav ul li {
+                margin-left: 1.5rem;
+            }
+
+                nav ul li a {
+                    text-decoration: none;
+                    color: #333;
+                    transition: color 0.3s ease;
+                }
+
+                    nav ul li a:hover {
+                        color: #0055a5;
+                    }
+        
+
+
+    /* Herp */
+    .hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        overflow: hidden;
+    }
+    
+    .video-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+         }
+
+        .hero h1 {
+            font-family: "Merriweather", serif;
+            position: relative;
+            z-index: 2;
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+            animation: fadeInDown 1s ease-out;
+            margin: 0 1rem;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: #f0e3d5;
+        }
+
+        /* animazioni */
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* Main Content */
+        main {
+            padding: 120px 20px 20px;
+        }
+
+            main h1 {
+                text-align: center;
+                margin-bottom: 1rem;
+                animation: fadeInDown 1s ease-out;
+            }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 50px;
+            max-width: 600px;
+            margin: 100px auto;
+            
+        }
+
+        /* Bottoni */
+        .audio-button {
+            position: relative;
+            top: -100px;
+            left: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        .audio-button:hover {
+            background: rgba(255, 0, 0, 0.7);
+        }
+
+        /* FORM */
+        input, select, textarea, button {
+            position:relative;
+            top: -120px;
+
+            display: block;
+            width: 100%;
+
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+
+            font-size: 1rem;
+            color: white;
+
+            background: rgba(0, 0, 0, 0.7);
+        }
+        button {
+            color: rgb(77, 76, 76);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: linear-gradient(45deg, #005599, #002244);
+            color: white;
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+        .terms {
+            position:relative;
+            top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../flag.png" alt="Bandiera di Aspakei" class="flag">
+            Aspakei
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="#">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+<section class="hero">
+    <video id="bg-video" class="video-background" autoplay loop playsinline muted>
+        <source src="video_esercito.mp4" type="video/mp4">
+        Il tuo browser non supporta il tag video.
+    </video>
+</section>
+
+<button class="audio-button" onclick="toggleAudio()">🔊 Attiva Audio</button>
+
+<div class="content">
+    <h1>Arruolati nell'Esercito di Aspakei</h1>
+    <div>
+        <form onsubmit="return showError()">
+            <input type="text" placeholder="Nome e Cognome" required>
+            <input type="date" required>
+            <input type="email" placeholder="Email" required>
+            <input type="tel" placeholder="Numero di telefono" required>
+            <input type="text" placeholder="Indirizzo di residenza" required>
+            <input type="text" placeholder="Titolo di studio" required>
+            <select required>
+                <option value="">Seleziona un corpo</option>
+                <option value="fanteria">Fanteria</option>
+                <option value="cavalleria">Cavalleria Corazzata</option>
+                <option value="artiglieria">Artiglieria</option>
+                <option value="genio">Intelligence</option>
+                <option value="speciali">Medico di campo</option>
+                <option value="aeronautica">Aeronautica</option>
+                <option value="marina">Marina</option>
+            </select>
+            <textarea placeholder="Esperienze militari pregresse (se presenti)" rows="4"></textarea>
+            <label>
+                <input type="checkbox" class="terms" required> Accetto i termini e le condizioni dell'arruolamento
+            </label>
+            <button type="submit">Invia Candidatura</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showError() {
+        alert("Errore durante l'invio della candidatura. Riprova più tardi.");
+        return false;
+    }
+
+    function toggleAudio() {
+            var video = document.getElementById("bg-video");
+            var button = document.querySelector(".audio-button");
+            if (video.muted) {
+                video.muted = false;
+                button.textContent = "🔇 Disattiva Audio";
+            } else {
+                video.muted = true;
+                button.textContent = "🔊 Attiva Audio";
+            }
+        }
+</script>
+</body>
+</html>
